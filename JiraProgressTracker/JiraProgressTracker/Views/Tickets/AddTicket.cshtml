@@ -1,0 +1,86 @@
+﻿@model JiraProgressTracker.ViewModels.TicketStatusViewModel
+@{
+    ViewBag.Title = "AddTicket";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Ticket == null)
+{
+    <h2>
+        Add Ticket
+    </h2>
+}
+else
+{
+    <h2>
+        Edit Ticket
+    </h2>
+}
+<br />
+
+@using (@Html.BeginForm("Save", "Tickets"))
+{
+    <div>
+        @Html.LabelFor(m => m.Ticket.TicketNumber)
+        @Html.TextBoxFor(m => m.Ticket.TicketNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.TicketNumber)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Ticket.JiraLink)
+        @Html.TextBoxFor(m => m.Ticket.JiraLink, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.JiraLink)
+    </div>
+    <br />
+    <div>
+        @Html.LabelFor(m => m.Ticket.Assignee)
+        @Html.TextBoxFor(m => m.Ticket.Assignee, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Assignee)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ticket.StatusId)
+        @Html.DropDownListFor(m => m.Ticket.StatusId, new SelectList(Model.Status, "Id", "Name"), "Select Current Status", new { @class = "form-control" })
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ticket.PriorityId)
+        @Html.DropDownListFor(m => m.Ticket.PriorityId, new SelectList(Model.Priority, "Id", "Name"), "Select Priority", new { @class = "form-control" })
+
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Ticket.TicketTypeId)
+        @Html.DropDownListFor(m => m.Ticket.TicketTypeId, new SelectList(Model.TicketType, "Id", "Name"), "Select Ticket Type", new { @class = "form-control" })
+
+    </div>
+    <br />
+
+    <div>
+        @Html.LabelFor(m => m.Ticket.Comments)
+        @Html.TextAreaFor(m => m.Ticket.Comments, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Ticket.Comments)
+    </div>
+    <br />
+    <div class="form-group">
+        <label>
+            @Html.CheckBoxFor(m => m.Ticket.IsSupportTicket) Is Support Ticket?
+        </label>
+    </div>
+    @Html.Hidden("Ticket.Id", (Model.Ticket != null) ? Model.Ticket.Id : 0)
+    @Html.AntiForgeryToken()
+
+    <button type="submit" class="btn btn-primary">
+        Save
+    </button>
+
+
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}

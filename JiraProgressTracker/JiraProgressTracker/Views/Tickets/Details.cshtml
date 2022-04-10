@@ -1,0 +1,103 @@
+﻿@model JiraProgressTracker.Models.Ticket
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ticket Number: @Model.TicketNumber</h2>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Description
+        </th>
+        <th>
+            Value
+        </th>
+    </tr>
+
+    <tr>
+        <td>
+            JiraLink
+        </td>
+        <td>
+            <a href="@Model.JiraLink" target="_balnk">@Model.JiraLink</a>
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Assignee
+        </td>
+        <td>
+            @Model.Assignee
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Status
+        </td>
+        <td>
+            @Model.Status.Name
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Priority
+        </td>
+        <td>
+            @Model.Priority.Name
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Ticket Type
+        </td>
+        <td>
+            @Model.TicketType.Name
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Status
+        </td>
+        <td>
+            @Model.Status.Name
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            IsSupportTicket
+        </td>
+        <td>
+            @Model.IsSupportTicket
+        </td>
+    </tr>
+
+    <tr>
+        <td>
+            Comments
+        </td>
+        <td>
+            @if (@Model.Comments == null)
+            {
+
+            }
+            else
+            {
+                @Model.Comments
+            }
+
+        </td>
+    </tr>
+</table>
+@Html.ActionLink("Edit", "AddTicket", new { id = Model.Id }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Delete", "Delete", new { id = Model.Id }, new { @class = "btn btn-primary" })
+@Html.ActionLink("Ticket Details", "Index", new { id = Model.Id }, new { @class = "btn btn-primary" })
+
+
