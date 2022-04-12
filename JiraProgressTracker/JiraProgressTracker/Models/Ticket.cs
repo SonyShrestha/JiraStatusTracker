@@ -21,6 +21,7 @@ namespace JiraProgressTracker.Models
         [Required(ErrorMessage ="Please Enter Assignee Name: ")]
         public String Assignee { get; set; }
         public Boolean IsSupportTicket { get; set; }
+        public String Description { get; set; }
         public String Comments { get; set; }
         public Status Status { get; set; }
         

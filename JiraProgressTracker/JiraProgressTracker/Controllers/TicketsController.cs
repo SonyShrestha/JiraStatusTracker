@@ -23,7 +23,7 @@ namespace JiraProgressTracker.Controllers
         // GET: Tickets
         public ActionResult Index()
         {
-            var ticket = _context.Tickets.Include(c=>c.Status).ToList();
+            var ticket = _context.Tickets.Include(c=>c.Status).Include(c => c.TicketType).ToList();
             return View(ticket);
         }
 
@@ -116,6 +116,7 @@ namespace JiraProgressTracker.Controllers
                     {
                         TicketNumber = vmModel.Ticket.TicketNumber,
                         JiraLink = vmModel.Ticket.JiraLink,
+                        Description = vmModel.Ticket.Description,
                         Assignee = vmModel.Ticket.Assignee,
                         IsSupportTicket = vmModel.Ticket.IsSupportTicket,
                         StatusId = vmModel.Ticket.StatusId,
@@ -129,6 +130,7 @@ namespace JiraProgressTracker.Controllers
                 {
                     ticketInDb.TicketNumber = vmModel.Ticket.TicketNumber;
                     ticketInDb.JiraLink = vmModel.Ticket.JiraLink;
+                    ticketInDb.Description = vmModel.Ticket.Description;
                     ticketInDb.Assignee = vmModel.Ticket.Assignee;
                     ticketInDb.IsSupportTicket = vmModel.Ticket.IsSupportTicket;
                     ticketInDb.StatusId = vmModel.Ticket.StatusId;

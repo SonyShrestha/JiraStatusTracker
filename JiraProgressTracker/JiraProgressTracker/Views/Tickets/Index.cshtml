@@ -13,7 +13,10 @@
             Ticket Number
         </th>
         <th>
-            Assignee
+            Description
+        </th>
+        <th>
+            Ticket Type
         </th>
         <th>
             Status
@@ -29,7 +32,10 @@
             <a href="@item.JiraLink" target="_blank">@item.TicketNumber</a>
         </td>
         <td>
-            @item.Assignee
+            @item.Description
+        </td>
+        <td>
+            @item.TicketType.Name
         </td>
         <td>
             @item.Status.Name
